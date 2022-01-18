@@ -1,1 +1,3 @@
-# 4216COMP-Group-Project
+**4216COMP Group Project:**
+
+Data analysis and visualisation
