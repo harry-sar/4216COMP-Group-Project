@@ -3,8 +3,8 @@
 Data analysis and visualisation
 
 Members:
-*Ryan Jones
-Aisling Moran
-Harry Sargeant
-Callum Taylor
-Michael Lynn*
+*Ryan Jones*
+*Aisling Moran*
+*Harry Sargeant*
+*Callum Taylor*
+*Michael Lynn*
