@@ -8,3 +8,4 @@ Members:
 *Harry Sargeant*
 *Callum Taylor*
 *Michael Lynn*
+*Robbie Bold*
