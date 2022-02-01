@@ -11,7 +11,6 @@ def get_flight_data(api_key,type):
         print(final_url)
     elif type=="basic":
         final_url=main_url+get_flight_pos+"&"+api_key
-
     get_req=requests.get(final_url).json()
     print(get_req)
 
