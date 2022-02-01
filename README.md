@@ -13,5 +13,5 @@ Data analysis and visualisation project.
 **TO DO:**\
 ~ Get historical data of planes\
 ~ Get airport (lat, long) data\
-~ Find weather API to correlate with flight data (callum looking into it)
+~ Find weather API to correlate with flight data (callum looking into it)\
 ~ talk about storing JSON and CSV data into other data structs
