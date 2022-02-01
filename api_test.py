@@ -1,4 +1,7 @@
 import requests,json
+import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
 
 def get_flight_data(api_key,type):
     main_url="https://airlabs.co/api/v9/flights"
@@ -14,7 +17,16 @@ def get_flight_data(api_key,type):
     print(get_req)
 
 
+def save_flight_data(api_key):
+    main_url = "https://airlabs.co/api/v9/flights?api_key="+api_key
+    print(main_url)
+    request_data=requests.get(main_url).json()["response"]
+    req_data=json.dumps(request_data)
+    dataFile=pd.read_json(req_data)
+    dataFile.to_csv('cachedFlightData.csv',encoding='utf-8',index=False)
+
+    return dataFile
+
 if __name__=="__main__":
     flight_api_key = ""
-    get_flight_data(flight_api_key,"basic")
-
+    dataFile=save_flight_data("")
