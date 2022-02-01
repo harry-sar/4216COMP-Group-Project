@@ -1,5 +1,4 @@
 import requests,json
-import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
 
@@ -31,5 +30,5 @@ def load_cached_data():
     return pd.read_csv('cachedFlightData.csv')
 
 if __name__=="__main__":
-    flight_api_key = ""
+    flight_api_key = "018ec34c-8a03-4cd6-aa66-026d1a0385cf"
     dataFile=save_flight_data("")
