@@ -27,7 +27,9 @@ def save_flight_data(api_key):
 
     return dataFile
 
-if __name__=="__main__":
+def load_cached_data():
+    return pd.read_csv('cachedFlightData.csv')
 
+if __name__=="__main__":
     flight_api_key = ""
     dataFile=save_flight_data("")
