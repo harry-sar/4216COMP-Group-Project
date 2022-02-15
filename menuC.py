@@ -5,6 +5,7 @@ class menuObj():
 
 
     def displayMenu(self):
+        ''' Main menu Console display '''
         print("----------------------------\n"
               "Flight & Tourism Data Menu\n"
               "----------------------------")
