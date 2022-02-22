@@ -1,11 +1,6 @@
-def test():
-    print("This is a test function")
+import csv
 
-
-
-print("aaa")
-
-
-
-if __name__ == "__main__":
-    test()
+with open('unwto-inbound-arrivals-data.csv', 'r') as f:
+    csv_reader = csv.reader(f)
+    header_row = next(csv_reader)
+print(header_row)
