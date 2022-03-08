@@ -28,6 +28,17 @@ def save_flight_data(api_key):
 def load_cached_data():
     return pd.read_csv('cachedFlightData.csv')
 
+def load_all_flights(df):
+    print(df.to_string())
+
+def load_specific_flight(df):
+    df = load_cached_data()
+    userFlightNum = input("Please enter the flight number that you'd like the information for: ")
+    print((df[df["flight_icao"] == userFlightNum]).to_string())
+
 if __name__=="__main__":
     flight_api_key = "018ec34c-8a03-4cd6-aa66-026d1a0385cf"
-    dataFile=save_flight_data("")
+    df = load_cached_data()
+    # dataFile=save_flight_data("")
+    # load_specific_flight(df)
+    load_all_flights(df)
