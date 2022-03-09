@@ -36,9 +36,20 @@ def load_specific_flight(df):
     userFlightNum = input("Please enter the flight number that you'd like the information for: ")
     print((df[df["flight_icao"] == userFlightNum]).to_string())
 
+def load_flight_status(df):
+    userStatus = int(input("Please choose one of the following status types:\n1. Currently Airborne\n2. On the Ground\n?: "))
+    if userStatus == 1:
+        print((df[df["status"] == "en-route"]).to_string())
+    elif userStatus == 2:
+        print((df[df["status"] == "landed"]).to_string())
+    else:
+        print("That option was invalid, please try again.")
+        load_flight_status(df)
+
 if __name__=="__main__":
     flight_api_key = "018ec34c-8a03-4cd6-aa66-026d1a0385cf"
     df = load_cached_data()
     # dataFile=save_flight_data("")
     # load_specific_flight(df)
-    load_all_flights(df)
+    # load_all_flights(df)
+    load_flight_status(df)
