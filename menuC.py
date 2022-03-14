@@ -1,25 +1,48 @@
+import csv
 class menuObj():
 
     def __init__(self):
-        self.choice=None
+       self.choice=None
 
 
-    def displayMenu(self):
+    def displayMenu(self,UserSelect):
         ''' Main menu Console display '''
         print("----------------------------\n"
               "Flight & Tourism Data Menu\n"
               "----------------------------")
-        # Aisling to complete menu class from here
-        # use if "____" in [""] for checks
-        # run self. instance of functions within class when user choice is matched
 
+        print("1 - Current Flights") #HarryVis
+        print("2 - Airport Usage Graph") #AislingVis
+        print("3 - Popular Tourist Destinations") #CallumVis
+        print("4 - Airspace Density Heatmap") #RyanVis
+        print("5 - Flight Trends") #MichaelVis
+        # print("6 - ") #RobbieVis
+
+        if UserSelect in ["1"]:
+            self.checkData(currentFlights)
+
+        if UserSelect in ["2"]:
+            self.checkData(airportUsage)
+
+        if UserSelect in ["3"]:
+            self.checkData(touristDest)
+
+        if UserSelect in ["4"]:
+            self.checkData(airspaceDens)
+
+        if UserSelect in ["5"]:
+            self.checkData(flightTrends)
+
+        #if UserSelect in ["6"]:
+         #   self.checkData(vis)
 
 
     def checkData(self,dataToSearch):
         quit(0)
         # so dataToSearch is the data you are looking for within the csv or internal JSON data files
         # search this for the required data
-
+        with open('cachedFlightData.csv') as f:
+            csvReader = csv.reader(f)
 
 
     def visualiseData(self):
