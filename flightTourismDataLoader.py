@@ -55,7 +55,5 @@ def outputSpecificCountryData(country,datFile):
 
 if __name__=="__main__":
     flight_api_key = "018ec34c-8a03-4cd6-aa66-026d1a0385cf"
-    # df = load_cached_data()
-    # dataFile=save_flight_data(flight_api_key)
-    print(outputSpecificCountryData("Czech RePublic",load_tourism_data()))
+    # print(outputSpecificCountryData("Czech RePublic",load_tourism_data()))
 

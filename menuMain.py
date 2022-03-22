@@ -1,4 +1,4 @@
-import csv
+import flightTourismDataLoader
 class menuObj():
 
     def __init__(self):
@@ -10,13 +10,11 @@ class menuObj():
         print("----------------------------\n"
               "Flight & Tourism Data Menu\n"
               "----------------------------")
-
         print("1 - Current Flights") #HarryVis
         print("2 - Airport Usage Graph") #AislingVis
         print("3 - Popular Tourist Destinations") #CallumVis
         print("4 - Airspace Density Heatmap") #RyanVis
         print("5 - Flight Trends") #MichaelVis
-        # print("6 - ") #RobbieVis
 
         if UserSelect in ["1"]:
             self.checkData(currentFlights)
@@ -33,9 +31,6 @@ class menuObj():
         if UserSelect in ["5"]:
             self.checkData(flightTrends)
 
-        #if UserSelect in ["6"]:
-         #   self.checkData(vis)
-
 
     def checkData(self,dataToSearch):
         quit(0)
@@ -48,3 +43,7 @@ class menuObj():
     def visualiseData(self):
         quit(0)
         # placeholder function for all visualisations later on.
+
+if __name__=="__main__":
+    MenuObj=menuObj()
+    menuObj.displayMenu()
