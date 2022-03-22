@@ -25,8 +25,11 @@ def save_flight_data(api_key):
 
     return dataFile
 
-def load_cached_data():
+def load_cached_flight_data():
     return pd.read_csv('cachedFlightData.csv')
+
+def load_tourism_data():
+    return pd.read_csv('Data for tourists CSV.csv')
 
 def load_all_flights(df):
     print(df.to_string())
@@ -48,8 +51,9 @@ def load_flight_status(df):
 
 if __name__=="__main__":
     flight_api_key = "018ec34c-8a03-4cd6-aa66-026d1a0385cf"
-    df = load_cached_data()
+    # df = load_cached_data()
     # dataFile=save_flight_data("")
     # load_specific_flight(df)
     # load_all_flights(df)
     # load_flight_status(df)
+    print(load_tourism_data())
