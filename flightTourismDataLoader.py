@@ -1,5 +1,6 @@
 import requests,json
 import pandas as pd
+import matplotlib.pyplot as plt
 
 def get_flight_data(api_key,type):
     main_url="https://airlabs.co/api/v9/flights"
@@ -35,7 +36,7 @@ def load_all_flights(df):
     print(df.to_string())
 
 def load_specific_flight(df):
-    df = load_cached_data()
+    df = load_cached_flight_data()
     userFlightNum = input("Please enter the flight number that you'd like the information for: ")
     print((df[df["flight_icao"] == userFlightNum]).to_string())
 
@@ -49,11 +50,12 @@ def load_flight_status(df):
         print("That option was invalid, please try again.")
         load_flight_status(df)
 
+def outputSpecificCountryData(country,datFile):
+    return (datFile[datFile["Country"].astype(str).str.lower() == country.lower()]).to_string()
+
 if __name__=="__main__":
     flight_api_key = "018ec34c-8a03-4cd6-aa66-026d1a0385cf"
     # df = load_cached_data()
-    # dataFile=save_flight_data("")
-    # load_specific_flight(df)
-    # load_all_flights(df)
-    # load_flight_status(df)
-    print(load_tourism_data())
+    # dataFile=save_flight_data(flight_api_key)
+    print(outputSpecificCountryData("Czech RePublic",load_tourism_data()))
+
