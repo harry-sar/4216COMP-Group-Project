@@ -52,4 +52,4 @@ if __name__=="__main__":
     # dataFile=save_flight_data("")
     # load_specific_flight(df)
     # load_all_flights(df)
-    load_flight_status(df)
+    # load_flight_status(df)
