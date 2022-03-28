@@ -65,7 +65,7 @@ class harrysVis:
             map = plt.imread('map_data/uk_map.jpeg')
             mapLd.set_title = ("UK live flight data")
         elif place.upper() in ["WORLD"]:
-            figure, mapLd = plt.subplots(figsize=(20, 20))
+            figure, mapLd = plt.subplots(figsize=(10, 10))
             BBox = ((dataFile.lng.min(), dataFile.lng.max(),
                  dataFile.lat.min(), dataFile.lat.max()))
             map=plt.imread('map_data/world_map.jpeg')
@@ -81,7 +81,7 @@ class harrysVis:
             plt.savefig('live_flight_data.png')
         plt.show()
 
-    def initaliseGraphAnalysis(self,cacheBool,apiKey,tourismData):
+    def initaliseGraphAnalysis(self,cacheBool,apiKey,tourismData,saveToFile):
         try:
             if cacheBool == True:
                 flightFile = self.load_cached_data()
@@ -172,11 +172,13 @@ class harrysVis:
         axes[1].set_xlabel("Airline Company")
         axes[1].bar([key for key,value in self.planesInAir.items()],[value for key,value in self.planesInAir.items()])
         axes[1].set_xticklabels([key for key,value in self.planesInAir.items()],rotation=90)
+        if saveToFile==True:
+            plt.savefig('COVID19 Effect.png')
         plt.show()
-
 if __name__=="__main__":
     api_key = "018ec34c-8a03-4cd6-aa66-026d1a0385cf"
 
     harrysVisObj=harrysVis()
     # harrysVisObj.mapLiveFlights(api_key,True,"uk",True)
-    harrysVisObj.initaliseGraphAnalysis(True,api_key,harrysVisObj.load_tourism())
+    harrysVisObj.initaliseGraphAnalysis(True,api_key,harrysVisObj.load_tourism(),True)
+    harrysVisObj.mapLiveFlights(api_key,True,"uk",True)
