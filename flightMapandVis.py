@@ -9,6 +9,8 @@ class harrysVis:
         self.CzechArrOv = []
         self.HKArrOv = []
         self.ItalyArrOv = []
+        self.USAArrOV=[]
+        self.UKArrOv=[]
         self.years = []
         self.planesInAir={}
 
@@ -92,7 +94,7 @@ class harrysVis:
         except:
             flightFile = self.load_cached_data()
 
-        figure,axes = plt.subplots(1,2)
+        figure,axes = plt.subplots(1,2,figsize=(10,12))
 
         # Gets the overnight stay data for a number of popular countries
         for amt,data in enumerate(tourismData["Country"]):
@@ -105,7 +107,10 @@ class harrysVis:
                 self.HKArrOv.append(tourismData["overnightStay"][amt])
             if data=="Italy":
                 self.ItalyArrOv.append(tourismData["overnightStay"][amt])
-
+            if data=="United States of America":
+                self.USAArrOV.append(tourismData["overnightStay"][amt])
+            if data == "United Kingdom":
+                self.UKArrOv.append(tourismData["overnightStay"][amt])
 
         # Regex for getting amount of flights currently in the air
         for icao in flightFile["flight_icao"]:
@@ -144,6 +149,13 @@ class harrysVis:
                     self.planesInAir["Malaysia Airlines"] += 1
                 except KeyError:
                     self.planesInAir["Malaysia Airlines"] = 1
+            if re.search('^CCA',str(icao)):
+                try:
+                    self.planesInAir["Air China"] += 1
+                except KeyError:
+                    self.planesInAir["Air China"] = 1
+        print(self.planesInAir)
+
         # print(self.planesInAir)
         figure.suptitle("Plot of stay data leading up to COVID-19 & Current Flights Airbourne after COVID-19",fontsize=10)
         axes[0].set_ylabel("Amount of Overnight Visitors (x10^7)")
@@ -152,12 +164,14 @@ class harrysVis:
         axes[0].plot(self.years,self.CzechArrOv,label="Czech Republic")
         axes[0].plot(self.years,self.HKArrOv, label="Hong Kong/China")
         axes[0].plot(self.years,self.ItalyArrOv,label="Italy")
+        axes[0].plot(self.years,self.USAArrOV,label="United States")
+        axes[0].plot(self.years,self.UKArrOv,label="United Kingdom")
         axes[0].legend(loc="upper left")
 
         axes[1].set_ylabel("Amount of flights currently in the air")
         axes[1].set_xlabel("Airline Company")
         axes[1].bar([key for key,value in self.planesInAir.items()],[value for key,value in self.planesInAir.items()])
-
+        axes[1].set_xticklabels([key for key,value in self.planesInAir.items()],rotation=90)
         plt.show()
 
 if __name__=="__main__":
