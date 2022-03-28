@@ -36,7 +36,6 @@ def load_all_flights(df):
     print(df.to_string())
 
 def load_specific_flight(df):
-    df = load_cached_flight_data()
     userFlightNum = input("Please enter the flight number that you'd like the information for: ")
     print((df[df["flight_icao"] == userFlightNum]).to_string())
 

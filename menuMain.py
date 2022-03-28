@@ -19,10 +19,15 @@ class menuObj():
             print("Try Again, Invalid Data!")
             self.displayMenu()
         elif self.userCheck=="1":
+            flightTourismDataLoader.load_specific_flight(flightTourismDataLoader.load_cached_flight_data())
+        elif self.userCheck=="2":
+            print(flightTourismDataLoader.load_all_flights(flightTourismDataLoader.load_cached_flight_data()))
+        elif self.userCheck=="3":
             countryChoice=input("Enter Valid Country")
             print(flightTourismDataLoader.outputSpecificCountryData(countryChoice,
                                 flightTourismDataLoader.load_tourism_data()))
-
+        elif self.userCheck=="4":
+            quit(0)
 
 
 
