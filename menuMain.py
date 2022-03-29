@@ -1,4 +1,5 @@
 import flightTourismDataLoader
+import ryanVis
 class menuObj():
 
     def __init__(self):
@@ -27,7 +28,19 @@ class menuObj():
             print(flightTourismDataLoader.outputSpecificCountryData(countryChoice,
                                 flightTourismDataLoader.load_tourism_data()))
         elif self.userCheck=="4":
-            quit(0)
+            pickVis = int(input("----------------------------\n"
+                                "   Select Visualisation\n"
+                                "----------------------------\n"
+                                "[1] Ryan's Visualisation\n"
+                                "[2] Harry's Visualisation\n"
+                                "[3] Aisling's Visualisation\n"
+                                "[4] Michael's Visualisation\n"
+                                "[5] Callum's Visualisation\n"
+                                ">> "))
+            if pickVis == 1:
+                ryanVis.ryanNumOfFlightsVis()
+                ryanVis.ryanScatterMapEU()
+
 
 
 
