@@ -1,9 +1,7 @@
-import json
 import matplotlib.pyplot as plt
 import pandas as pd
-import requests
 
-def ryanVisualisation(df):
+def ryanNumOfFlightsVis(df):
     aircraftCountry = ["US","CN","IE","UK","IN"]
     values = [0,0,0,0,0]
     for x in df["flag"]:
@@ -30,11 +28,30 @@ def ryanVisualisation(df):
     axs[1].set_ylabel("Number of Active Flights")
     plt.show()
 
-def ryanHeatmap():
-    figure, mapLd = plt.subplots(figsize=(10,10))
-    boundingBox = (67.39, 35.99, -25.12, 48.20)
-    map = plt.imread('mapEurope.png')
-    mapLd.set_title = ("European Flights Heatmap")
+def ryanScatterMapEU():
+    figure, mapCreate = plt.subplots(figsize=(10,10))
+    boundingBox = (-25.12,48.20,35.99,67.39)
+    mapEU = plt.imread('mapEurope.png')
+    mapCreate.set_title = ("European Flights Heatmap")
+    mapCreate.scatter(df.lng,df.lat,alpha=0.2, c='#ff03cd')
+    mapCreate.set_xlim(boundingBox[0],boundingBox[1])
+    mapCreate.set_ylim(boundingBox[2],boundingBox[3])
+    mapCreate.imshow(mapEU, zorder=0, extent=boundingBox, aspect='equal')
+    mapCreate.set_xlabel("Longitude")
+    mapCreate.set_ylabel("Latitude")
+    plt.show()
+
+def ryanHeatmapEU():
+    figure, mapCreate = plt.subplots(figsize=(10, 10))
+    boundingBox = (-25.12, 48.20, 35.99, 67.39)
+    mapEU = plt.imread('mapEurope.png')
+    mapCreate.set_title = ("European Flights Heatmap")
+    mapCreate.scatter(df.lng, df.lat, alpha=0.2, c='#ff03cd')
+    mapCreate.set_xlim(boundingBox[0], boundingBox[1])
+    mapCreate.set_ylim(boundingBox[2], boundingBox[3])
+    mapCreate.imshow(mapEU, zorder=0, extent=boundingBox, aspect='equal')
+    mapCreate.set_xlabel("Longitude")
+    mapCreate.set_ylabel("Latitude")
     plt.show()
 
 def load_cached_data():
@@ -43,4 +60,6 @@ def load_cached_data():
 if __name__ == "__main__":
     flight_api_key = "018ec34c-8a03-4cd6-aa66-026d1a0385cf"
     df = load_cached_data()
-    ryanVisualisation(df)
+    # ryanNumOfFlightsVis(df)
+    # ryanScatterMapEU()
+    ryanHeatmapEU()
