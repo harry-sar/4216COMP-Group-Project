@@ -5,14 +5,9 @@ import pandas as pd
 class harrysVis:
 
     def __init__(self):
-        self.CyprusArrOv = []
-        self.CzechArrOv = []
-        self.HKArrOv = []
-        self.ItalyArrOv = []
-        self.USAArrOV=[]
-        self.UKArrOv=[]
         self.years = []
         self.planesInAir={}
+        self.overnightPlotData={}
 
     def get_flight_data(self,api_key,type):
         main_url="https://airlabs.co/api/v9/flights"
@@ -25,7 +20,6 @@ class harrysVis:
             final_url=main_url+get_flight_pos+"&"+api_key
         get_req=requests.get(final_url).json()
         print(get_req)
-
 
     def save_flight_data(self,api_key):
         main_url = "https://airlabs.co/api/v9/flights?api_key="+api_key
@@ -55,9 +49,6 @@ class harrysVis:
                     quit(0)
         except:
             dataFile=self.load_cached_data()
-
-        # boundingBox = ((dataFile.lng.min(), dataFile.lng.max(),
-        #          dataFile.lat.min(), dataFile.lat.max()))
 
         if place.upper() in ["UK"]:
             figure, mapLd = plt.subplots(figsize=(10, 10))
@@ -99,19 +90,36 @@ class harrysVis:
         # Gets the overnight stay data for a number of popular countries
         for amt,data in enumerate(tourismData["Country"]):
             if data=="Cyprus":
-                self.CyprusArrOv.append(tourismData["overnightStay"][amt])
+                try:
+                    self.overnightPlotData["Cyprus"].append(tourismData["overnightStay"][amt])
+                except:
+                    self.overnightPlotData["Cyprus"]=[tourismData["overnightStay"][amt]]
                 self.years.append(tourismData["years"][amt])
             if data=="Czech Republic":
-                self.CzechArrOv.append(tourismData["overnightStay"][amt])
+                try:
+                    self.overnightPlotData["Czech Republic"].append(tourismData["overnightStay"][amt])
+                except:
+                    self.overnightPlotData["Czech Republic"] = [tourismData["overnightStay"][amt]]
             if data=="Hong Kong - China":
-                self.HKArrOv.append(tourismData["overnightStay"][amt])
+                try:
+                    self.overnightPlotData["Hong Kong - China"].append(tourismData["overnightStay"][amt])
+                except:
+                    self.overnightPlotData["Hong Kong - China"] = [tourismData["overnightStay"][amt]]
             if data=="Italy":
-                self.ItalyArrOv.append(tourismData["overnightStay"][amt])
+                try:
+                    self.overnightPlotData["Italy"].append(tourismData["overnightStay"][amt])
+                except:
+                    self.overnightPlotData["Italy"] = [tourismData["overnightStay"][amt]]
             if data=="United States of America":
-                self.USAArrOV.append(tourismData["overnightStay"][amt])
+                try:
+                    self.overnightPlotData["United States of America"].append(tourismData["overnightStay"][amt])
+                except:
+                    self.overnightPlotData["United States of America"] = [tourismData["overnightStay"][amt]]
             if data == "United Kingdom":
-                self.UKArrOv.append(tourismData["overnightStay"][amt])
-
+                try:
+                    self.overnightPlotData["United Kingdom"].append(tourismData["overnightStay"][amt])
+                except:
+                    self.overnightPlotData["United Kingdom"] = [tourismData["overnightStay"][amt]]
         # Regex for getting amount of flights currently in the air
         for icao in flightFile["flight_icao"]:
             if re.search('^RYR',str(icao)):
@@ -154,31 +162,25 @@ class harrysVis:
                     self.planesInAir["Air China"] += 1
                 except KeyError:
                     self.planesInAir["Air China"] = 1
-        print(self.planesInAir)
 
-        # print(self.planesInAir)
         figure.suptitle("Plot of stay data leading up to COVID-19 & Current Flights Airbourne after COVID-19",fontsize=10)
         axes[0].set_ylabel("Amount of Overnight Visitors (x10^7)")
         axes[0].set_xlabel("Years")
-        axes[0].plot(self.years,self.CyprusArrOv,label="Cyprus")
-        axes[0].plot(self.years,self.CzechArrOv,label="Czech Republic")
-        axes[0].plot(self.years,self.HKArrOv, label="Hong Kong/China")
-        axes[0].plot(self.years,self.ItalyArrOv,label="Italy")
-        axes[0].plot(self.years,self.USAArrOV,label="United States")
-        axes[0].plot(self.years,self.UKArrOv,label="United Kingdom")
+        for daKey,daValue in self.overnightPlotData.items():
+            axes[0].plot(self.years,self.overnightPlotData[daKey],label=daKey)
         axes[0].legend(loc="upper left")
 
         axes[1].set_ylabel("Amount of flights currently in the air")
         axes[1].set_xlabel("Airline Company")
         axes[1].bar([key for key,value in self.planesInAir.items()],[value for key,value in self.planesInAir.items()])
         axes[1].set_xticklabels([key for key,value in self.planesInAir.items()],rotation=90)
+
         if saveToFile==True:
             plt.savefig('COVID19 Effect.png')
         plt.show()
 if __name__=="__main__":
     api_key = "018ec34c-8a03-4cd6-aa66-026d1a0385cf"
-
     harrysVisObj=harrysVis()
-    # harrysVisObj.mapLiveFlights(api_key,True,"uk",True)
+
     harrysVisObj.initaliseGraphAnalysis(True,api_key,harrysVisObj.load_tourism(),True)
     harrysVisObj.mapLiveFlights(api_key,True,"uk",True)
