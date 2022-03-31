@@ -11,9 +11,9 @@ Data analysis and visualisation project.
 *Robbie Bold*
 
 
-How to Run Michael's Visualisation
-•	Ensure you are connected to the Github which has all of the data which is used in the graph. 
-•	Go to “Michael’s Visualisation” branch to find my own visualisation
-•	Load up my visualisation code
-•	Then run the code 
+How to Run Michael's Visualisation \
+•	Ensure you are connected to the Github which has all of the data which is used in the graph \
+•	Go to “Michael’s Visualisation” branch to find my own visualisation \
+•	Load up my visualisation code \
+•	Then run the code \
 •	This should then load the scatter graph rather quickly
