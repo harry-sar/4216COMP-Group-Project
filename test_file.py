@@ -31,7 +31,7 @@ print(len(airportDictionaryRestrictions))
 destinations = []
 incomingFlights = [1, 4, 9, 16, 25]
 
-fig, axs = plt.subplots(1, 2, figsize=(10, 7))
+fig, axs = plt.subplots(1, 2, figsize=(10, 8))
 
 # Bar Chart
 axs[0].set_title("Amount of Flights Arriving to the Airports")
@@ -49,10 +49,8 @@ for index,selectedCountries in enumerate(pd.read_csv("Data for tourists CSV.csv"
         countryDictionary[selectedCountries].append(pd.read_csv("Data for tourists CSV.csv")["TotalArrivals"][index])
     except:
         countryDictionary[selectedCountries] = [pd.read_csv("Data for tourists CSV.csv")["TotalArrivals"][index]]
-    counter=counter+1
-axs[1].plot(countryDictionary.keys(),countryDictionary.values())
-axs[1].set_xticklabels(countryDictionary.keys(),rotation=90)
-print(len(countryDictionary))
+
+# print(countryDictionary)
 
 #countryDictionaryRestrictions = dict(countryDictionary)
 #for key, dictionaryValue in countryDictionary.items():
@@ -60,13 +58,50 @@ print(len(countryDictionary))
   #      del countryDictionaryRestrictions[key]
 #print(len(countryDictionaryRestrictions))
 
+dictV2={}
 
+for eachCount,listValues in countryDictionary.items():
+    if eachCount in ["Turkey","United Kingdom","United States of America","Spain","Bahrain"]:
+        dictV2[eachCount]=listValues
 
+years=[]
+for year in range(20):
+    years.append(2000+year)
+
+countMe=0
+dictV3=dict({})
+
+for place,listValues in dictV2.items():
+    for eachYearValue in listValues:
+        if countMe>=5:
+            try:
+                if place=="United Kingdom":
+                    dictV3["UK"].append(eachYearValue)
+                elif place=="United States of America":
+                    dictV3["USA"].append(eachYearValue)
+                else:
+                    dictV3[place].append(eachYearValue)
+            except:
+                if place=="United Kingdom":
+                    dictV3["UK"]=[eachYearValue]
+                elif place=="United States of America":
+                    dictV3["USA"]=[eachYearValue]
+                else:
+                    dictV3[place] = [eachYearValue]
+        countMe+=1
+    countMe=0
+
+print(years)
+print(dictV3)
+
+axs[1].plot(dictV3.keys(),dictV3.values(),label=years)
+axs[1].set_xticklabels(dictV3.keys(),rotation=90)
+axs[1].legend(loc="upper right")
 
 # Line Graph
 axs[1].set_title("Popular Tourist Destinations Based on Country")
-axs[1].set_xlabel("Countries")
-axs[1].set_ylabel("")
-axs[1].plot()
+# axs[1].set_xlabel("Countries")
+# axs[1].set_ylabel("")
+# axs[1].plot()
 
 plt.show()
