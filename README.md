@@ -18,6 +18,7 @@ How to Run Michael's Visualisation \
 •	Then run the code \
 •	This should then load the scatter graph rather quickly
 
+-----------------------------------------------------------------
 **How to Run Harry Sargeant's Visualisation Student ID:979454**\
 ~ First run the menuMain.py\
 ~ Next press 4 to see what visualisations to run\
