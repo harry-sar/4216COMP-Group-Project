@@ -29,10 +29,11 @@ class menuObj():
                                 flightTourismDataLoader.load_tourism_data()))
         elif self.userCheck=="4":
             self.pickVis()
+            quit(0)
 
     def pickVis(self):
         try:
-            pickVis = int(input("----------------------------\n"
+            pickVisC = int(input("----------------------------\n"
                             "   Select Visualisation\n"
                             "----------------------------\n"
                             "[1] Ryan's Visualisation\n"
@@ -41,25 +42,40 @@ class menuObj():
                             "[4] Michael's Visualisation\n"
                             "[5] Callum's Visualisation\n"
                             ">> "))
-            if pickVis == 1:
+            if pickVisC == 1:
                 ryanVis.ryanNumOfFlightsVis()
                 ryanVis.ryanScatterMapEU()
-            elif pickVis == 2:
-                harryVisObj=harryVis.harrysVis()
-                harryVisObj.initaliseGraphAnalysis(True,self.api_key,flightTourismDataLoader.load_tourism_data(),True)
-                harryVisObj.mapLiveFlights(self.api_key,True,"uk",True)
-            elif pickVis ==3:
+            elif pickVisC == 2:
+                harryVisObj = harryVis.harrysVis()
+
+                self.cacheSelect=input("please enter [true|false] do you want to use cached data? >>")
+
+                if self.cacheSelect in ["true","false"]:
+                    self.cacheSelect=self.cacheSelect.lower() in ["true"]
+                    harryVisObj.initaliseGraphAnalysis(self.cacheSelect, self.api_key,flightTourismDataLoader.load_tourism_data(), True)
+                self.overlaySelect=input("Please enter place to map [world|uk] >>")
+                if self.overlaySelect.lower() in ["uk"]:
+                    harryVisObj.mapLiveFlights(self.api_key,self.cacheSelect,"uk",True)
+                elif self.overlaySelect.lower() in ["world"]:
+                    harryVisObj.mapLiveFlights(self.api_key,True,"uk",True)
+
+                if self.overlaySelect.lower() not in ["uk","world"]:
+                    print("Invalid Data!, Try Again.")
+                    self.pickVis()
+            elif pickVisC ==3:
                 quit(0)
-            elif pickVis ==4:
+            elif pickVisC ==4:
                 quit(0)
-            elif pickVis ==5:
+            elif pickVisC ==5:
                 quit(0)
-            elif pickVis not in [1,2,3,4,5]:
+            elif pickVisC not in [1,2,3,4,5]:
                 print("Invalid data")
                 self.pickVis()
+                quit(0)
         except:
             print("Invalid data")
             self.pickVis()
+            quit(0)
 if __name__=="__main__":
     MenuObj=menuObj()
     MenuObj.displayMenu()
