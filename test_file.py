@@ -62,6 +62,7 @@ print(len(countryDictionary))
 
 
 
+
 # Line Graph
 axs[1].set_title("Popular Tourist Destinations Based on Country")
 axs[1].set_xlabel("Countries")
