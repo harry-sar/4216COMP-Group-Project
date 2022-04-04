@@ -60,7 +60,6 @@ class menuObj():
         except:
             print("Invalid data")
             self.pickVis()
-
 if __name__=="__main__":
     MenuObj=menuObj()
     MenuObj.displayMenu()
