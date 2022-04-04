@@ -35,7 +35,7 @@ def ryanScatterMapEU():
     df = load_cached_data()
     figure, mapCreate = plt.subplots(figsize=(10, 10))
     boundingBox = (-25.12, 48.20, 35.99, 67.39)
-    mapEU = plt.imread('mapEurope.png')
+    mapEU = plt.imread('map_data/mapEurope.png')
     mapCreate.set_suptitle = ("European Flights Heatmap")
     mapCreate.scatter(df.lng, df.lat, alpha=0.2, c='#ff03cd')
     mapCreate.set_xlim(boundingBox[0], boundingBox[1])
@@ -47,7 +47,7 @@ def ryanScatterMapEU():
 
 
 def load_cached_data():
-    return pd.read_csv('cachedFlightData.csv')
+    return pd.read_csv('map_data/cachedFlightData.csv')
 
 
 if __name__ == "__main__":

@@ -22,15 +22,15 @@ def save_flight_data(api_key):
     request_data=requests.get(main_url).json()["response"]
     req_data=json.dumps(request_data)
     dataFile=pd.read_json(req_data)
-    dataFile.to_csv('cachedFlightData.csv',encoding='utf-8',index=False)
+    dataFile.to_csv('map_data/cachedFlightData.csv',encoding='utf-8',index=False)
 
     return dataFile
 
 def load_cached_flight_data():
-    return pd.read_csv('cachedFlightData.csv')
+    return pd.read_csv('map_data/cachedFlightData.csv')
 
 def load_tourism_data():
-    return pd.read_csv('Data for tourists CSV.csv')
+    return pd.read_csv('map_data/Data for tourists CSV.csv')
 
 def load_all_flights(df):
     print(df.to_string())

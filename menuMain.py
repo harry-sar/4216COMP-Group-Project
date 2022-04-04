@@ -1,10 +1,10 @@
 import flightTourismDataLoader
-import ryanVis
+import harryVis, ryanVis
 class menuObj():
 
     def __init__(self):
        self.choice=None
-
+       self.api_key="018ec34c-8a03-4cd6-aa66-026d1a0385cf"
 
     def displayMenu(self):
         ''' Main menu Console display '''
@@ -28,33 +28,38 @@ class menuObj():
             print(flightTourismDataLoader.outputSpecificCountryData(countryChoice,
                                 flightTourismDataLoader.load_tourism_data()))
         elif self.userCheck=="4":
+            self.pickVis()
+
+    def pickVis(self):
+        try:
             pickVis = int(input("----------------------------\n"
-                                "   Select Visualisation\n"
-                                "----------------------------\n"
-                                "[1] Ryan's Visualisation\n"
-                                "[2] Harry's Visualisation\n"
-                                "[3] Aisling's Visualisation\n"
-                                "[4] Michael's Visualisation\n"
-                                "[5] Callum's Visualisation\n"
-                                ">> "))
+                            "   Select Visualisation\n"
+                            "----------------------------\n"
+                            "[1] Ryan's Visualisation\n"
+                            "[2] Harry's Visualisation\n"
+                            "[3] Aisling's Visualisation\n"
+                            "[4] Michael's Visualisation\n"
+                            "[5] Callum's Visualisation\n"
+                            ">> "))
             if pickVis == 1:
                 ryanVis.ryanNumOfFlightsVis()
                 ryanVis.ryanScatterMapEU()
-
-
-
-
-    def checkData(self,dataToSearch):
-        quit(0)
-        # so dataToSearch is the data you are looking for within the csv or internal JSON data files
-        # search this for the required data
-        # with open('cachedFlightData.csv') as f:
-        #     csvReader = csv.reader(f)
-
-
-    def visualiseData(self):
-        quit(0)
-        # placeholder function for all visualisations later on.
+            elif pickVis == 2:
+                harryVisObj=harryVis.harrysVis()
+                harryVisObj.initaliseGraphAnalysis(True,self.api_key,flightTourismDataLoader.load_tourism_data(),True)
+                harryVisObj.mapLiveFlights(self.api_key,True,"uk",True)
+            elif pickVis ==3:
+                quit(0)
+            elif pickVis ==4:
+                quit(0)
+            elif pickVis ==5:
+                quit(0)
+            elif pickVis not in [1,2,3,4,5]:
+                print("Invalid data")
+                self.pickVis()
+        except:
+            print("Invalid data")
+            self.pickVis()
 
 if __name__=="__main__":
     MenuObj=menuObj()
