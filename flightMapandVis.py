@@ -180,7 +180,17 @@ class harrysVis:
         plt.show()
 if __name__=="__main__":
     api_key = "018ec34c-8a03-4cd6-aa66-026d1a0385cf"
-    harrysVisObj=harrysVis()
+    harryVisObj=harrysVis()
 
-    harrysVisObj.initaliseGraphAnalysis(True,api_key,harrysVisObj.load_tourism(),True)
-    harrysVisObj.mapLiveFlights(api_key,True,"uk",True)
+    cacheSelect = input("please enter [true|false] do you want to use cached data? >>")
+    if cacheSelect in ["true", "false"]:
+        cacheSelect = cacheSelect.lower() in ["true"]
+        harryVisObj.initaliseGraphAnalysis(cacheSelect, api_key, harryVisObj.load_tourism(),
+                                           True)
+    overlaySelect = input("Please enter place to map [world|uk] >>")
+    if overlaySelect.lower() in ["uk", "world"]:
+        harryVisObj.mapLiveFlights(api_key, cacheSelect, overlaySelect, True)
+
+    if overlaySelect.lower() not in ["uk", "world"]:
+        print("Invalid Data!, Try Again.")
+
