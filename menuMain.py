@@ -54,10 +54,8 @@ class menuObj():
                     self.cacheSelect=self.cacheSelect.lower() in ["true"]
                     harryVisObj.initaliseGraphAnalysis(self.cacheSelect, self.api_key,flightTourismDataLoader.load_tourism_data(), True)
                 self.overlaySelect=input("Please enter place to map [world|uk] >>")
-                if self.overlaySelect.lower() in ["uk"]:
-                    harryVisObj.mapLiveFlights(self.api_key,self.cacheSelect,"uk",True)
-                elif self.overlaySelect.lower() in ["world"]:
-                    harryVisObj.mapLiveFlights(self.api_key,True,"uk",True)
+                if self.overlaySelect.lower() in ["uk","world"]:
+                    harryVisObj.mapLiveFlights(self.api_key,self.cacheSelect,self.overlaySelect,True)
 
                 if self.overlaySelect.lower() not in ["uk","world"]:
                     print("Invalid Data!, Try Again.")
