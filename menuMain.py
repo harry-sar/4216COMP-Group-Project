@@ -1,5 +1,6 @@
+import MichaelVis
 import flightTourismDataLoader
-import harryVis, ryanVis
+import harryVis, ryanVis, AislingVis
 class menuObj():
 
     def __init__(self):
@@ -61,11 +62,11 @@ class menuObj():
                     print("Invalid Data!, Try Again.")
                     self.pickVis()
             elif pickVisC ==3:
-                quit(0)
+                AislingVis.RunVis()
             elif pickVisC ==4:
-                quit(0)
+                MichaelVis.DailyOvernightVis()
             elif pickVisC ==5:
-                quit(0)
+                print("Un-Submitted")
             elif pickVisC not in [1,2,3,4,5]:
                 print("Invalid data")
                 self.pickVis()
