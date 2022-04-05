@@ -4,7 +4,6 @@ import pandas as pd
 csvReader = pd.read_csv('cachedFlightData.csv')
 csvReader = csvReader["arr_iata"]
 csvTouristReader = pd.read_csv('Data for tourists CSV.csv')
-# csvTouristReader = csvTouristReader["Country", "TotalArrivals"]
 
 # Airport Dictionary
 airportDictionary = {}
@@ -50,13 +49,6 @@ for index,selectedCountries in enumerate(pd.read_csv("Data for tourists CSV.csv"
     except:
         countryDictionary[selectedCountries] = [pd.read_csv("Data for tourists CSV.csv")["TotalArrivals"][index]]
 
-# print(countryDictionary)
-
-#countryDictionaryRestrictions = dict(countryDictionary)
-#for key, dictionaryValue in countryDictionary.items():
-  #  if countryDictionary[key] <= 1:
-  #      del countryDictionaryRestrictions[key]
-#print(len(countryDictionaryRestrictions))
 
 dictV2={}
 
@@ -101,7 +93,7 @@ axs[1].legend(loc="upper right")
 # Line Graph
 axs[1].set_title("Popular Tourist Destinations Based on Country")
 axs[1].set_xlabel("Countries")
-# axs[1].set_ylabel("")
+axs[1].set_ylabel("Number of Tourist (bn)")
 # axs[1].plot()
 
 plt.show()
