@@ -100,7 +100,7 @@ axs[1].legend(loc="upper right")
 
 # Line Graph
 axs[1].set_title("Popular Tourist Destinations Based on Country")
-# axs[1].set_xlabel("Countries")
+axs[1].set_xlabel("Countries")
 # axs[1].set_ylabel("")
 # axs[1].plot()
 
