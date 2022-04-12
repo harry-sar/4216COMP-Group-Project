@@ -1,4 +1,5 @@
 import MichaelVis
+import CallumsVisualisation
 import flightTourismDataLoader
 import harryVis, ryanVis, AislingVis
 class menuObj():
@@ -66,7 +67,7 @@ class menuObj():
             elif pickVisC ==4:
                 MichaelVis.DailyOvernightVis()
             elif pickVisC ==5:
-                print("Un-Submitted")
+                CallumsVisualisation.touristsvis()
             elif pickVisC not in [1,2,3,4,5]:
                 print("Invalid data")
                 self.pickVis()
